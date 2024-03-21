@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { compose, pipe } from "lodash/fp";
+import Counter from "./features/counter/Counter";
 
+// function add(a) {
+//   return function (b) {
+//     return a + b;
+//   };
+// }
+
+// const add2 = (a) => (b) => a + b;
+// let addone = add2(3)(7);
+// console.log(addone);
+
+//console.log(add(3, 7));
+
+// const trim = (str) => str.trim();
+// const lower = (str) => str.toLowerCase();
+
+// const wrap = (type) => (str) => `<${type}>${str}</${type}`;
+
+// const result = pipe(trim, lower, wrap("div"));
+// const res = result("ASWIn");
+// console.log(res);
+
+// function random(number) {
+
+// }
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Counter />
+    </main>
   );
 }
 
