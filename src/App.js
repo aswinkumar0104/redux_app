@@ -1,6 +1,8 @@
 import "./App.css";
 import { compose, pipe } from "lodash/fp";
 import Counter from "./features/counter/Counter";
+import PostsList from "./features/posts/PostsList";
+import AddPostForm from "./features/posts/AddPostForm";
 
 // function add(a) {
 //   return function (b) {
@@ -29,7 +31,9 @@ import Counter from "./features/counter/Counter";
 function App() {
   return (
     <main>
-      <Counter />
+      {/* <Counter /> */}
+      <AddPostForm />
+      <PostsList />
     </main>
   );
 }
