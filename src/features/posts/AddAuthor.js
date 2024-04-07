@@ -3,7 +3,6 @@ import { selectAllUsers } from "../users/usersSlice";
 
 const AddAuthor = ({ userId }) => {
   const users = useSelector(selectAllUsers);
-  console.log(users);
 
   const author = users.find((user) => parseInt(user.id) === userId);
 
