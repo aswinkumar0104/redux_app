@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPosts } from "./postsSlice";
+import { addNewPost } from "./postsSlice";
 import { selectAllUsers } from "../users/usersSlice";
 
 const AddPostForm = () => {
@@ -9,6 +9,7 @@ const AddPostForm = () => {
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState("");
   const users = useSelector(selectAllUsers);
+  const [addReqStatus, setAddReqStatus] = useState("idle");
 
   const titleChange = (value) => {
     setTitle(value);
@@ -17,12 +18,33 @@ const AddPostForm = () => {
     setContent(value);
   };
   const userIdChange = (value) => setUserId(value);
+
+  const canSave =
+    [title, content, userId].every(Boolean) && addReqStatus === "idle";
+
   const savePost = () => {
-    if (title && content) {
-      dispatch(addPosts(title, content, userId));
+    if (canSave) {
+      try {
+        setAddReqStatus("pending");
+        dispatch(addNewPost({ title, body: content, userId })).unwrap();
+
+        setTitle("");
+        setContent("");
+        setUserId("");
+      } catch (err) {
+        console.log("Found Error", err);
+      } finally {
+        setAddReqStatus("idle");
+      }
     }
   };
-  const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
+
+  // const savePost = () => {
+  //   if (title && content) {
+  //     dispatch(addPosts(title, content, userId));
+  //   }
+  // };
+
   return (
     <section>
       <form>

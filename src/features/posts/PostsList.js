@@ -6,6 +6,7 @@ import {
   getPostsStatus,
   fetchPosts,
 } from "./postsSlice";
+import { fetchUsers } from "../users/usersSlice";
 
 import PostExperts from "./PostExperts";
 
@@ -13,12 +14,14 @@ const PostsList = () => {
   const posts = useSelector(selectAllPosts);
   const postsStatus = useSelector(getPostsStatus);
   const postsError = useSelector(getPostsError);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (postsStatus === "idle") {
       dispatch(fetchPosts());
     }
+    dispatch(fetchUsers());
   }, [postsStatus, dispatch]);
 
   let content;
